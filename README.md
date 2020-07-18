@@ -14,3 +14,4 @@ This is a code to create an abstract 360-degree Fractal tree pattern (A fractal 
 
 ## License & Copyright
 &#169; Tonumoy Mukherjee, Indian Insitute of Technology Kharagpur
+Licensed under the [MIT License](LICENSE).
