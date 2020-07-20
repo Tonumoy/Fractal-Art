@@ -9,7 +9,7 @@ This is a code to create an abstract 360-degree Fractal tree pattern (A fractal 
 ![Result](https://github.com/Tonumoy/Fractal-Art/blob/master/RESULT.jpg?raw=true)
 
 ## Contributors
-* Tonumoy Mukherjee tonumoymukherjee2@gmail.com
+* Tonumoy Mukherjee(https://github.com/Tonumoy) tonumoymukherjee2@gmail.com
 
 ## License & Copyright
 &#169; Tonumoy Mukherjee, Indian Insitute of Technology Kharagpur
