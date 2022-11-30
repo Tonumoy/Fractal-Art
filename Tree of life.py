@@ -4,258 +4,60 @@
 import turtle as tu
 
 
-roo = tu.Turtle() #Turtle object
-wn = tu.Screen() #Screen Object
-wn.bgcolor("black") #Screen Bg color
+roo = tu.Turtle()  # Turtle object
+wn = tu.Screen()  # Screen Object
+wn.bgcolor("black")  # Screen background color
 wn.title("Fractal Tree Pattern")
-roo.left(90) #moving the turtle 90 degrees towards left
-roo.speed(20)#setting the speed of the turtle
+roo.left(90)  # moving the turtle 90 degrees towards left
+# zero is the fastest speed. see https://docs.python.org/3/library/turtle.html#turtle.speed
+roo.speed(0)
 
 
-def  draw(l): #recursive function taking length 'l' as argument
-    if(l<10):
+def draw_recursive(pensize: int, length: float, scale_factor: float, color: str) -> None:
+    if (length < 10):
         return
-    else:
-
-        roo.pensize(2) #Setting Pensize
-        roo.pencolor("yellow") #Setting Pencolor as yellow
-        roo.forward(l) #moving turtle forward by 'l'
-        roo.left(30) #moving the turtle 30 degrees towards left
-        draw(3*l/4) #drawing a fractal on the left of the turtle object 'roo' with 3/4th of its length
-        roo.right(60) #moving the turtle 60 degrees towards right
-        draw(3*l/4) #drawing a fractal on the right of the turtle object 'roo' with 3/4th of its length
-        roo.left(30) #moving the turtle 30 degrees towards left
-        roo.pensize(2)
-        roo.backward(l) #returning the turtle back to its original psition
-
-draw (20) # drawing 20 times 
-
-roo.right(90)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(2)
-        roo.pencolor("magenta") #magenta
-        roo.forward(l)
-        roo.left(30)
-        draw(3*l/4)
-        roo.right(60)
-        draw(3*l/4)
-        roo.left(30)
-        roo.pensize(2)
-        roo.backward(l)
-
-draw (20)
+    roo.pensize(pensize)  # Setting Pensize
+    roo.pencolor(color)
+    roo.forward(length)
+    roo.left(30)  # moving the turtle 30 degrees towards left
+    # drawing a fractal on the left of the turtle object 'roo' with a fraction of its length
+    draw_recursive(pensize, length*scale_factor, scale_factor, color)
+    roo.right(60)  # moving the turtle 60 degrees towards right
+    # drawing a fractal on the left of the turtle object 'roo' with a fraction of its length
+    draw_recursive(pensize, length*scale_factor, scale_factor, color)
+    roo.left(30)  # moving the turtle 30 degrees towards left
+    roo.pensize(pensize)
+    roo.backward(length)  # returning the turtle back to its original psition
 
 
-roo.left(270)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(2)
-        roo.pencolor("red") #red
-        roo.forward(l)
-        roo.left(30)
-        draw(3*l/4)
-        roo.right(60)
-        draw(3*l/4)
-        roo.left(30)
-        roo.pensize(2)
-        roo.backward(l)
-
-draw (20)
-
-roo.right(90)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(2)
-        roo.pencolor('#FFF8DC') #white
-        roo.forward(l)
-        roo.left(30)
-        draw(3*l/4)
-        roo.right(60)
-        draw(3*l/4)
-        roo.left(30)
-        roo.pensize(2)
-        roo.backward(l)
-
-draw(20)
-########################################################
-
-def  draw(l):
-    if(l<10):
-        return
-    else:
-
-        roo.pensize(3)
-        roo.pencolor("lightgreen") #lightgreen
-        roo.forward(l)
-        roo.left(30)
-        draw(4*l/5)
-        roo.right(60)
-        draw(4*l/5)
-        roo.left(30)
-        roo.pensize(3)
-        roo.backward(l)
-
-draw (40)
-
-roo.right(90)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(3)
-        roo.pencolor("red") #red
-        roo.forward(l)
-        roo.left(30)
-        draw(4*l/5)
-        roo.right(60)
-        draw(4*l/5)
-        roo.left(30)
-        roo.pensize(3)
-        roo.backward(l)
-
-draw (40)
+white = '#FFF8DC'
+# parameters to make the same image
+# (pensize, length, scale, color, turn function, turn amount)
+tree_parameters = [
+    (2, 20, 3.0/4.0, 'yellow', roo.right, 90),
+    (2, 20, 3.0/4.0, 'magenta', roo.left, 270),
+    (2, 20, 3.0/4.0, 'red', roo.right, 90),
+    (2, 20, 3.0/4.0, white, roo.right, 0),
+    (3, 40, 4.0/5.0, 'lightgreen', roo.right, 90),
+    (3, 40, 4.0/5.0, 'red', roo.left, 270),
+    (3, 40, 4.0/5.0, 'yellow', roo.right, 90),
+    (3, 40, 4.0/5.0, white, roo.right, 0),
+    (2, 60, 6.0/7.0, 'cyan', roo.right, 90),
+    (2, 60, 6.0/7.0, 'yellow', roo.left, 270),
+    (2, 60, 6.0/7.0, 'magenta', roo.right, 90),
+    (2, 60, 6.0/7.0, white, roo.right, 90),
+]
 
 
-roo.left(270)
-roo.speed(2000)
+for changing_pen_size, changing_length, changing_scale, changing_color, turn_function, turn_amount in tree_parameters:
 
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(3)
-        roo.pencolor("yellow") #yellow
-        roo.forward(l)
-        roo.left(30)
-        draw(4*l/5)
-        roo.right(60)
-        draw(4*l/5)
-        roo.left(30)
-        roo.pensize(3)
-        roo.backward(l)
+    draw_recursive(pensize=changing_pen_size,
+                   length=changing_length,
+                   scale_factor=changing_scale,
+                   color=changing_color)
 
-draw (40)
-
-roo.right(90)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(3)
-        roo.pencolor('#FFF8DC') #white
-        roo.forward(l)
-        roo.left(30)
-        draw(4*l/5)
-        roo.right(60)
-        draw(4*l/5)
-        roo.left(30)
-        roo.pensize(3)
-        roo.backward(l)
-
-draw (40)
-
-########################################################
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        
-        roo.pensize(2)
-        roo.pencolor("cyan") #cyan
-        roo.forward(l)
-        roo.left(30)
-        draw(6*l/7)
-        roo.right(60)
-        draw(6*l/7)
-        roo.left(30)
-        roo.pensize(2)
-        roo.backward(l)
-        
-draw (60)
-
-roo.right(90)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(2)
-        roo.pencolor("yellow") #yellow
-        roo.forward(l)
-        roo.left(30)
-        draw(6*l/7)
-        roo.right(60)
-        draw(6*l/7)
-        roo.left(30)
-        roo.pensize(2)
-        roo.backward(l)
-        
-draw (60)
+    # turn the turtle by some amount
+    turn_function(turn_amount)
 
 
-roo.left(270)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(2)
-        roo.pencolor("magenta") #magenta
-        roo.forward(l)
-        roo.left(30)
-        draw(6*l/7)
-        roo.right(60)
-        draw(6*l/7)
-        roo.left(30)
-        roo.pensize(2)
-        roo.backward(l)
-        
-draw (60)
-
-roo.right(90)
-roo.speed(2000)
-
-#recursion
-def  draw(l):
-    if(l<10):
-        return
-    else:
-        roo.pensize(2)
-        roo.pencolor('#FFF8DC') #white
-        roo.forward(l)
-        roo.left(30)
-        draw(6*l/7)
-        roo.right(60)
-        draw(6*l/7)
-        roo.left(30)
-        roo.pensize(2)
-        roo.backward(l)
-draw(60)
 wn.exitonclick()
